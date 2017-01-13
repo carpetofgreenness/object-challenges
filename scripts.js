@@ -1,3 +1,5 @@
+//1 - multiplier object
+
 function Multiplier(num) {
 	this.x = 1;
 	this.multiply = function(){
@@ -9,6 +11,8 @@ function Multiplier(num) {
 		return this.x;
 	}
 }
+
+//2 - photo album object
 
 function Album(albumName) {
 	this.albumName = albumName;
@@ -46,3 +50,34 @@ summer.addPhoto("pic2","place2");
 summer.addPhoto("pic3","place3");
 console.log(summer.listPhotos());
 console.log(summer.getPhoto(1));
+
+//3 - person, teacher, student, school objects
+
+function Person(name, age, city) {
+	this.name = name;
+	this.age = age;
+	this.city = city;
+}
+
+function Teacher(title, subject) {
+	this.title = title;
+	this.subject = subject;
+	Person.apply(this, arguments);
+}
+
+Teacher.prototype = new Person();
+
+function Student(grade, major) {
+	this.grade = grade;
+	this.major = major;
+	Person.apply(this, arguments);
+}
+
+Student.prototype = new Person();
+
+fred = new Person("Fred",22,"Philly");
+george = new Teacher("George",32,"NYC");
+ron = new Student("Ron",15,"London");
+console.log(fred);
+console.log(george);
+console.log(ron);
